@@ -1,0 +1,103 @@
+
+
+header {
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    height: 50px;
+    font-size: 1em;
+}
+
+nav {
+    width: 100%;
+}
+
+nav #logo {
+    margin: 10px 0px 0px 15px;
+}
+
+nav ul {
+    list-style: none;
+    position: absolute;
+    right: 15px;
+    top: 12px;
+}
+
+nav ul li a {
+    text-decoration: none;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+#new_task {
+    width: 80%;
+    margin: 40px auto;
+}
+
+#new_task input[type=text] {
+    width: 80%;
+    height: 34px;
+    border: 1px solid rgba(0, 0, 0, .3);
+    padding-left: 5px;
+}
+
+.btn {
+    padding: 8px 12px;
+    color: white;
+    margin: 1px;
+    cursor: pointer;
+}
+
+.btn-danger {
+    background-color: red;
+    border: 1px solid red;
+}
+
+.btn-success {
+    background-color: green;
+    border: 1px solid green;
+}
+
+.btn-add {
+    background-color: dodgerblue;
+    border: 1px solid dodgerblue;
+}
+
+.task {
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    margin: 15px 0px;
+}
+
+.task p {
+    text-align: justify;
+    display: inline-block;
+    margin: 10px 0px;
+}
+
+.task .btn_action_task {
+    display: inline-block;
+    float: right;
+}
+
+@media screen and (max-width: 650px) {
+
+    .task {
+        height: 70px;
+    }
+
+    .task p {
+        width: 100%;
+        text-align: center;
+    }
+
+    .task .btn_action_task {
+        width: 70%;
+        margin: auto;
+    }
+
+}
+
+
