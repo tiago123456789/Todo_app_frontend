@@ -15,7 +15,26 @@ class App extends Component {
                         </ul>
                     </nav>
                 </header>
+
                 <div className="container">
+
+                    <div id="form_register_user">
+                        <h1>Novo Usuario</h1>
+                        <form id="new_user">
+
+                            <label htmlFor="nome">Nome:</label><br/>
+                            <input type="text" id="nome" placeholder="Nome"/><br/>
+
+                            <label htmlFor="email">Email:</label><br/>
+                            <input type="email" id="email" placeholder="Email"/><br/>
+
+                            <label htmlFor="senha">Senha:</label><br/>
+                            <input type="password" placeholder="Senha"/><br/>
+
+                            <input type="submit" value="Registrar-se" className="btn btn-success"/>
+                        </form>
+                    </div>
+
                     <form id="new_task">
                         <label htmlFor="descricao">Nova tarefa:</label>
                         <br/>

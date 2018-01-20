@@ -36,11 +36,12 @@ nav ul li a {
     margin: 40px auto;
 }
 
-#new_task input[type=text] {
+input[type=text], input[type=email], input[type=password] {
     width: 80%;
     height: 34px;
     border: 1px solid rgba(0, 0, 0, .3);
     padding-left: 5px;
+    margin-bottom: 3px;
 }
 
 .btn {
@@ -99,5 +100,19 @@ nav ul li a {
     }
 
 }
+
+#form_register_user {
+    width: 50%;
+    margin: auto;
+}
+
+#new_user {
+    width: 100%;
+}
+
+#new_user input:not([type=submit]) {
+    width: 100%;
+}
+
 
 
