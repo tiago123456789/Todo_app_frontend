@@ -49,6 +49,7 @@ input[type=text], input[type=email], input[type=password] {
     color: white;
     margin: 1px;
     cursor: pointer;
+    border-radius: 3px;
 }
 
 .btn-danger {
@@ -101,7 +102,7 @@ input[type=text], input[type=email], input[type=password] {
 
 }
 
-#form_register_user {
+#form_register_user, #form_authentication_user {
     width: 50%;
     margin: auto;
 }
