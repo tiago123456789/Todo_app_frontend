@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Button from "./../template/Button";
 import axios from "axios";
+import UserService from "../../service/UserService";
 
 export default class Register extends Component {
 
@@ -11,6 +12,7 @@ export default class Register extends Component {
             email: "",
             senha: ""
         };
+        this._userService = new UserService(axios);
         this.register = this.register.bind(this);
     }
 
@@ -18,13 +20,22 @@ export default class Register extends Component {
         this.setState({ [chave]: valor });
     }
 
-    register(event) {
-        event.preventDefault();
-        console.log("passed on here");
-        axios.post("http://localhost:3000/users", this.state)
-            .then(response => console.log(response))
-            .catch(responseError => console.log(responseError));
+    redirecionarLogin() {
+        this.props.history.push("/login");
     }
+
+    async register(event) {
+        event.preventDefault();
+        try {
+            const response = await this._userService.register(this.state);
+            if (response.status === 201) {
+                this.redirecionarLogin();
+            }
+        } catch(e) {
+            console.log(e);
+        }
+    }
+
 
     render() {
         return (

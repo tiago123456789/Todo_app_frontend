@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import MessageToastr from "react-redux-toastr";
 import Header from "../component/template/Header";
 import DivContainer from "../component/template/DivContainer";
 import Routes from "./Routes";
@@ -10,10 +11,10 @@ class App extends Component {
         return (
             <div>
                 <Header/>
-
                 <DivContainer>
                     <Routes />
                 </DivContainer>
+                <MessageToastr/>
             </div>
         );
     }
