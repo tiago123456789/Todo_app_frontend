@@ -18,7 +18,9 @@ export default class Register extends Component {
         this.setState({ [chave]: valor });
     }
 
-    register() {
+    register(event) {
+        event.preventDefault();
+        console.log("passed on here");
         axios.post("http://localhost:3000/users", this.state)
             .then(response => console.log(response))
             .catch(responseError => console.log(responseError));
@@ -28,7 +30,7 @@ export default class Register extends Component {
         return (
             <div id="form_register_user">
                 <h1>Novo Usuario</h1>
-                <form id="new_user">
+                <form id="new_user" onSubmit={this.register}>
 
                     <label htmlFor="nome">Nome:</label><br/>
                     <input type="text" id="nome" value={this.state.nome}
@@ -45,7 +47,8 @@ export default class Register extends Component {
                            onChange={(event) => this.alteraValorState("senha", event.target.value)}
                            placeholder="Senha"/><br/>
 
-                    <Button isBtnForm={true} nome="Registrar-se" btnStyle="add" action={this.register} />
+                    <Button isBtnForm={true}
+                            nome="Registrar-se" btnStyle="add" />
                 </form>
             </div>
         )
