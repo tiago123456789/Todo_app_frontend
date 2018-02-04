@@ -1,6 +1,8 @@
 export default {
     TYPE_ACTIONS: {
-        USER_AUTHENTICATED: "USER_AUTHENTICATED"
+        USER: {
+            AUTHENTICATED: "USER_AUTHENTICATED",
+        }
     },
     LOCALSTORAGE: {
         CHAVE: {

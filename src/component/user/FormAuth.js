@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import Button from "./../template/Button";
-import {combineReducers} from "redux";
-import {connect} from "react-redux";
-import {autenticar} from "./UserActions";
+import AuthService from "../../service/AuthService";
+import * as axios from "axios";
+import Constantes from "../../Constantes";
 
-class FormAuth extends Component {
+export default class FormAuth extends Component {
 
     constructor(props) {
         super(props);
@@ -13,26 +13,32 @@ class FormAuth extends Component {
             email: "",
             senha: ""
         };
-
-        this.alterValueInState = this.alterValueInState.bind(this);
+        this._authService = new AuthService(axios);
+        this.alterValuesState = this.alterValuesState.bind(this);
         this.autenticar = this.autenticar.bind(this);
     }
 
-    alterValueInState(key, value) {
-       this.setState({ [key]: value });
+    alterValuesState(key, value) {
+        this.setState({ [key]: value });
     }
 
-    clearValuesState() {
-        this.setState({ email: "", senha: ""})
+    cleanValuesState() {
+        this.setState({ email: "", senha: "" });
+    }
+
+    definirTokenLocalStorage(token) {
+        localStorage.setItem(Constantes.LOCALSTORAGE.CHAVE.TOKEN, token);
     }
 
     async autenticar(event) {
         event.preventDefault();
-        this.props.autenticar({ email: this.state.email, senha: this.state.senha});
-        if (this.props.isAuthenticated) {
+        try {
+            const response = await this._authService.autenticar(this.state);
+            this.definirTokenLocalStorage(response.data.token);
+            this.cleanValuesState();
             this.props.history.push("/tarefa");
-        } else {
-            // this.clearValuesState();
+        } catch (e) {
+            throw new Error(e);
         }
     }
 
@@ -44,12 +50,12 @@ class FormAuth extends Component {
 
                     <label htmlFor="email">Email:</label><br/>
                     <input type="email" id="email" value={this.state.email}
-                           onChange={(event) => this.alterValueInState("email", event.target.value) }
+                           onChange={(event) => this.alterValuesState("email", event.target.value) }
                            placeholder="Email"/><br/>
 
                     <label htmlFor="senha">Senha:</label><br/>
                     <input type="password" id="senha" value={this.state.senha}
-                           onChange={(event) => this.alterValueInState("senha", event.target.value) }
+                           onChange={(event) => this.alterValuesState("senha", event.target.value) }
                            placeholder="Senha"/><br/>
 
                     <Button isBtnForm={true} nome="Logar" btnStyle="add"/>
@@ -60,7 +66,3 @@ class FormAuth extends Component {
         )
     }
 }
-
-const mapStateToProps = (state) => ({ isAuthenticated: state.user.isAuthenticated });
-const mapDispatchToProps = (dispatch) => combineReducers({ autenticar: autenticar }, dispatch);
-export default connect(mapStateToProps, mapDispatchToProps)(FormAuth);

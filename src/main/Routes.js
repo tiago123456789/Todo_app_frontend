@@ -11,9 +11,7 @@ export default () => {
             <Switch>
                 <Route path="/login" component={FormAuth}/>
                 <Route path="/register" component={Register} />
-                <Route path="/tarefa" render={() => {
-                    return false ? <Route component={Tarefa} /> : <Route component={FormAuth} />;
-                }} />
+                <Route path="/tarefa" component={Tarefa} />
                 <Redirect to="/login"/>
             </Switch>
         </HashRouter>
