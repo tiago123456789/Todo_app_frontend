@@ -1,4 +1,5 @@
 export default {
+    BASE_URL: "http://localhost:3000/",
     TYPE_ACTIONS: {
         USER: {
             AUTHENTICATED: "USER_AUTHENTICATED",
@@ -8,5 +9,13 @@ export default {
         CHAVE: {
             TOKEN: "token"
         }
+    },
+    HEADER: {
+        CHAVE: {
+            AUTHORIZATION: "Authorization"
+        }
+    },
+    JWT: {
+        PREFIX: "Bearer "
     }
 }
