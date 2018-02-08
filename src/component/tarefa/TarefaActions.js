@@ -10,8 +10,8 @@ const criarNova = (tarefa) => {
         try {
             await tarefaService.criar(tarefa);
             dispatch([
-                { type: Constantes.TYPE_ACTIONS.TASK.CREATE },
-                cleanField()
+                cleanField(),
+                buscarTodas()
             ]);
         } catch(e) {
             throw new Error(e);
