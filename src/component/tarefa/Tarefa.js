@@ -1,10 +1,13 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { buscarTodas } from "./TarefaActions";
 import NovaTarefa from "./Novo";
 import ListaTarefa from "./Lista";
 import Header from "../template/Header";
 import DivContainer from "../template/DivContainer";
 
-export default class Tarefa extends Component {
+class Tarefa extends Component {
 
 
     render() {
@@ -19,3 +22,7 @@ export default class Tarefa extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => ({ });
+const mapDispatchToProps = (dispatch) => bindActionCreators({ buscarTodas: buscarTodas }, dispatch);
+export default connect(null, mapDispatchToProps)(Tarefa);

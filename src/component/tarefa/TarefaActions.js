@@ -31,6 +31,17 @@ const deletar = (id) => {
     }
 };
 
+const marcarTarefaConcluida = (id) => {
+  return async dispatch => {
+      try {
+         await tarefaService.atualizar(id, { done: true });
+         dispatch(buscarTodas());
+      } catch (error) {
+
+      }
+  }
+};
+
 const buscarTodas = () => {
   return async (dispatch) => {
       try {
@@ -45,3 +56,6 @@ const buscarTodas = () => {
 const cleanField = () => {
     return { type: Constantes.TYPE_ACTIONS.TASK.CLEAN_FIELD };
 };
+
+
+export { cleanField, buscarTodas, marcarTarefaConcluida, criarNova, deletar };
