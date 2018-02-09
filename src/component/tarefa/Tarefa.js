@@ -9,6 +9,9 @@ import DivContainer from "../template/DivContainer";
 
 class Tarefa extends Component {
 
+    componentWillMount() {
+        this.props.buscarTodas();
+    }
 
     render() {
         return (
@@ -16,13 +19,13 @@ class Tarefa extends Component {
                <Header/>
                <DivContainer>
                    <NovaTarefa/>
-                   <ListaTarefa/>
+                   <ListaTarefa tarefas={this.props.tarefas}/>
                </DivContainer>
            </div>
         )
     }
 }
 
-const mapStateToProps = (state) => ({ });
+const mapStateToProps = (state) => ({ tarefas: state.tarefa.tarefas });
 const mapDispatchToProps = (dispatch) => bindActionCreators({ buscarTodas: buscarTodas }, dispatch);
-export default connect(null, mapDispatchToProps)(Tarefa);
+export default connect(mapStateToProps, mapDispatchToProps)(Tarefa);

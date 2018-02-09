@@ -4,7 +4,7 @@ import Constantes from "../Constantes";
 export default class JwtService {
 
     constructor() {
-        this._token = this.getToken();s
+        this._token = this.getToken();
     }
 
     _decode() {
