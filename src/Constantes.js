@@ -3,7 +3,8 @@ export default {
     TYPE_ACTIONS: {
         TASK: {
             LIST: "TASK_LIST",
-            CLEAN_FIELD: "CLEAN_FIELD"
+            CLEAN_FIELD: "CLEAN_FIELD",
+            ALTER_FIELD_DESCRIPTION: "ALTER_FIELT_DESCRIPTION"
         }
     },
     LOCALSTORAGE: {

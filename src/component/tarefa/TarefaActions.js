@@ -31,6 +31,10 @@ const deletar = (id) => {
     }
 };
 
+const alterarCampoDescricao = (event) => {
+  return { type: Constantes.TYPE_ACTIONS.TASK.ALTER_FIELD_DESCRIPTION, payload: event.target.value };
+};
+
 const marcarTarefaConcluida = (id) => {
   return async dispatch => {
       try {
@@ -58,4 +62,4 @@ const cleanField = () => {
 };
 
 
-export { cleanField, buscarTodas, marcarTarefaConcluida, criarNova, deletar };
+export { cleanField, buscarTodas, marcarTarefaConcluida, criarNova, deletar, alterarCampoDescricao };
