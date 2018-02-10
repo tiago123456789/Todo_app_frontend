@@ -14,7 +14,7 @@ class NovoTarefa extends Component {
 
     criar(event) {
         event.preventDefault();
-        this.props.criarNova({ description: this.description.value });
+        this.props.criarNova({ description: this.props.description });
     }
 
     render() {
@@ -26,7 +26,7 @@ class NovoTarefa extends Component {
                        placeholder="Nova tarefa"
                        onChange={this.props.alterarCampoDescricao }
                        value={this.props.description}
-                       ref={(input) => this.description = input }/>
+                       />
                 <Button isBtnForm={true} nome="Adicionar" btnStyle="add"/>
             </form>
         )

@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import Button from "./../template/Button";
+import { deletar} from "./TarefaActions";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
-export default class Lista extends Component {
+class Lista extends Component {
 
     montarListagemTarefa() {
         if (this.props.tarefas.length > 0) {
@@ -11,7 +14,7 @@ export default class Lista extends Component {
                     <div className="btn_action_task">
                         <Button btnStyle="success" nome="Check"/>
                         <Button btnStyle="add" nome="Edit"/>
-                        <Button btnStyle="danger" nome="Delete"/>
+                        <Button btnStyle="danger" nome="Delete" action={() => this.props.deletar(tarefa._id) } />
                     </div>
                 </div>
             ));
@@ -27,3 +30,6 @@ export default class Lista extends Component {
         )
     }
 }
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({ deletar: deletar }, dispatch);
+export default connect(null, mapDispatchToProps)(Lista);
