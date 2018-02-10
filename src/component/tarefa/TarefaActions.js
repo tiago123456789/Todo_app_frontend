@@ -21,40 +21,41 @@ const criarNova = (tarefa) => {
 };
 
 const deletar = (id) => {
-  return async (dispatch) => {
-      try {
-          await tarefaService.deletar(id);
-          dispatch(buscarTodas())
-      } catch (e) {
-          throw new Error(e);
-      }
+    return async (dispatch) => {
+        try {
+            await tarefaService.deletar(id);
+            dispatch(buscarTodas())
+        } catch (e) {
+            throw new Error(e);
+        }
     }
 };
 
 const alterarCampoDescricao = (event) => {
-  return { type: Constantes.TYPE_ACTIONS.TASK.ALTER_FIELD_DESCRIPTION, payload: event.target.value };
+    return { type: Constantes.TYPE_ACTIONS.TASK.ALTER_FIELD_DESCRIPTION, payload: event.target.value };
 };
 
-const marcarTarefaConcluida = (id) => {
-  return async dispatch => {
-      try {
-         await tarefaService.atualizar(id, { done: true });
-         dispatch(buscarTodas());
-      } catch (error) {
+const marcarTarefaConcluida = (tarefa) => {
+    tarefa.done = true;
+    return async dispatch => {
+        try {
+            await tarefaService.atualizar(tarefa._id, tarefa);
+            dispatch(buscarTodas());
+        } catch (error) {
 
-      }
-  }
+        }
+    }
 };
 
 const buscarTodas = () => {
-  return async (dispatch) => {
-      try {
-          const response = await tarefaService.listar();
-          dispatch({ type: Constantes.TYPE_ACTIONS.TASK.LIST, payload: response.data })
-      } catch(e) {
-          throw new Error(e);
-      }
-  }
+    return async (dispatch) => {
+        try {
+            const response = await tarefaService.listar();
+            dispatch({ type: Constantes.TYPE_ACTIONS.TASK.LIST, payload: response.data })
+        } catch(e) {
+            throw new Error(e);
+        }
+    }
 };
 
 const cleanField = () => {
