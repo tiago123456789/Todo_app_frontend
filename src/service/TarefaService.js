@@ -7,7 +7,7 @@ export default class TarefaService extends Service {
     constructor(httpClient) {
         super(httpClient, "users");
         this._jwtService = new JwtService();
-        this.setValueInHeaderRequest(Constantes.HEADER.CHAVE.AUTHORIZATION, this._jwtService.getToken());
+        this.setValueInHeader(Constantes.HEADER.CHAVE.AUTHORIZATION, this._jwtService.getToken());
     }
 
     async criar(tarefa) {

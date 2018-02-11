@@ -8,15 +8,23 @@ const autenticar = () => {
 };
 
 const logout = () => {
-    localStorage.clear();
-    return { type: Constantes.TYPE_ACTIONS.USER.AUTHENTICATED, payload: false };
+    return dispatch => {
+        localStorage.clear();
+        dispatch({ type: Constantes.TYPE_ACTIONS.USER.AUTHENTICATED, payload: false });
+    }
 };
 
 const verificarAutorizacao = () => {
-   const token = localStorage.getItem(Constantes.LOCALSTORAGE.CHAVE.TOKEN);
-   if (!token || jwtService.isExpired()) {
-       return logout();
-   }
+    return dispatch => {
+       const token = localStorage.getItem(Constantes.LOCALSTORAGE.CHAVE.TOKEN);
+       if (!token) {
+            return dispatch(logout());
+       }
+
+       if (jwtService.isExpired()) {
+           return dispatch(logout());
+       }
+    }
 };
 
 export { autenticar, logout, verificarAutorizacao };

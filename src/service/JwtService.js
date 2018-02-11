@@ -3,12 +3,8 @@ import Constantes from "../Constantes";
 
 export default class JwtService {
 
-    constructor() {
-        this._token = this.getToken();
-    }
-
     _decode() {
-        return jwt.decode(this._token);
+        return jwt.decode(this.getToken());
     }
 
     getToken() {
@@ -24,8 +20,8 @@ export default class JwtService {
     }
 
     isExpired() {
-        const timeCurrent = new Date().getTime();
-        const timeExpired = this.getSpecifiedValue("exp");
+        const timeCurrent = new Date().getTime() / 1000;
+        const timeExpired = parseInt(this.getSpecifiedValue("exp"));
         return timeCurrent > timeExpired;
     }
 }

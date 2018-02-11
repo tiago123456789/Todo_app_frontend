@@ -20,7 +20,8 @@ export default class Service {
         return this._endpoint;
     }
 
-    setValueInHeaderRequest(key, value) {
+    setValueInHeader(key, value, request) {
+
         this._httpClient.defaults.headers.common[key] = value;
     }
 }

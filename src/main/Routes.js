@@ -2,11 +2,8 @@ import React from "react";
 import { Route, HashRouter, Switch, Redirect } from "react-router-dom";
 import FormAuth from "./../component/user/FormAuth";
 import Register from "./../component/user/Register";
-import Tarefa from "./../component/tarefa/Tarefa"
-
-const PrivateRouter = (props) => {
-    return <Route path={props.path} component={props.component} />
-};
+import Tarefa from "./../component/tarefa/Tarefa";
+import PrivateRouter from "./../component/PrivateRouter";
 
 export default () => {
 

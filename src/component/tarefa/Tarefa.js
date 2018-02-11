@@ -10,7 +10,7 @@ import DivContainer from "../template/DivContainer";
 
 class Tarefa extends Component {
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.buscarTodas();
     }
 

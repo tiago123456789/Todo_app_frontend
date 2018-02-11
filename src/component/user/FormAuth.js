@@ -2,10 +2,13 @@ import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import Button from "./../template/Button";
 import AuthService from "../../service/AuthService";
+import { autenticar } from "./UserAction";
 import * as axios from "axios";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import Constantes from "../../Constantes";
 
-export default class FormAuth extends Component {
+class FormAuth extends Component {
 
     constructor(props) {
         super(props);
@@ -36,7 +39,10 @@ export default class FormAuth extends Component {
             const response = await this._authService.autenticar(this.state);
             this.definirTokenLocalStorage(response.data.token);
             this.cleanValuesState();
-            this.props.history.push("/tarefa");
+            this.props.autenticar();
+            if (this.props.isAutorization) {
+                this.props.history.push("/tarefa");
+            }
         } catch (e) {
             throw new Error(e);
         }
@@ -66,3 +72,7 @@ export default class FormAuth extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => ({ isAutorization: state.user.autenticado });
+const mapDispatchToProps = (dispatch) => bindActionCreators({ autenticar: autenticar }, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(FormAuth);
