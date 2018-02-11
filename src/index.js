@@ -6,7 +6,6 @@ import reduxThunk from "redux-thunk"
 import reduxMulti from "redux-multi";
 import rootReducer from "./main/Reducer";
 import App from './main/App';
-import './index.css';
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 const store = applyMiddleware(reduxMulti, reduxThunk)(createStore)(rootReducer, devTools);
