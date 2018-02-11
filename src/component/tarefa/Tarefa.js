@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { buscarTodas } from "./TarefaActions";
+import { logout } from "./../user/UserAction"
 import NovaTarefa from "./Novo";
 import ListaTarefa from "./Lista";
 import Header from "../template/Header";
@@ -16,7 +17,7 @@ class Tarefa extends Component {
     render() {
         return (
            <div>
-               <Header/>
+               <Header sair={this.props.logout}/>
                <DivContainer>
                    <NovaTarefa/>
                    <ListaTarefa tarefas={this.props.tarefas}/>
@@ -27,5 +28,8 @@ class Tarefa extends Component {
 }
 
 const mapStateToProps = (state) => ({ tarefas: state.tarefa.tarefas });
-const mapDispatchToProps = (dispatch) => bindActionCreators({ buscarTodas: buscarTodas }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    buscarTodas: buscarTodas,
+    logout: logout
+}, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Tarefa);

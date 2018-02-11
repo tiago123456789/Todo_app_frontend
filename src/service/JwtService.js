@@ -22,4 +22,10 @@ export default class JwtService {
     getSpecifiedValue(key) {
         return this._decode()[key];
     }
+
+    isExpired() {
+        const timeCurrent = new Date().getTime();
+        const timeExpired = this.getSpecifiedValue("exp");
+        return timeCurrent > timeExpired;
+    }
 }

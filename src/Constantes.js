@@ -6,6 +6,9 @@ export default {
             CLEAN_FIELD: "CLEAN_FIELD",
             ALTER_FIELD_DESCRIPTION: "ALTER_FIELT_DESCRIPTION",
             EDIT: "EDIT"
+        },
+        USER: {
+            AUTHENTICATED: "AUTHENTICATED"
         }
     },
     LOCALSTORAGE: {
