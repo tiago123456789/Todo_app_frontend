@@ -1,6 +1,6 @@
 import Service from "./Service";
 import JwtService from "./JwtService";
-import Constantes from "../Constantes";
+import Constantes from "../config/Constantes";
 
 export default class TarefaService extends Service {
 

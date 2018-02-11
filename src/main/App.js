@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import MessageToastr from "react-redux-toastr";
 import Routes from "./Routes";
+import Message from "./../component/template/Message";
 import "../sistema.css";
 
 
@@ -9,7 +9,7 @@ class App extends Component {
         return (
             <div>
                 <Routes />
-                <MessageToastr/>
+                <Message />
             </div>
         );
     }

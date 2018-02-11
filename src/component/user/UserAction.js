@@ -1,4 +1,5 @@
-import Constantes from "../../Constantes";
+import { toastr } from "react-redux-toastr";
+import Constantes from "../../config/Constantes";
 import JwtService from "../../service/JwtService";
 
 const jwtService = new JwtService();
@@ -9,7 +10,8 @@ const autenticar = () => {
 
 const logout = () => {
     return dispatch => {
-        localStorage.clear();
+        localStorage.removeItem(Constantes.LOCALSTORAGE.CHAVE.TOKEN);
+        toastr.success(Constantes.MESSAGE.SUCCESS.USER.LOGOUT);
         dispatch({ type: Constantes.TYPE_ACTIONS.USER.AUTHENTICATED, payload: false });
     }
 };

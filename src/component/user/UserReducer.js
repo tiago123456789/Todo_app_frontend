@@ -1,4 +1,4 @@
-import Constantes from "../../Constantes";
+import Constantes from "../../config/Constantes";
 
 const INITIAL_STATE = {
     autenticado: false

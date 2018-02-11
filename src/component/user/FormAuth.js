@@ -6,7 +6,8 @@ import { autenticar } from "./UserAction";
 import * as axios from "axios";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import Constantes from "../../Constantes";
+import { toastr } from "react-redux-toastr"
+import Constantes from "../../config/Constantes";
 
 class FormAuth extends Component {
 
@@ -38,13 +39,16 @@ class FormAuth extends Component {
         try {
             const response = await this._authService.autenticar(this.state);
             this.definirTokenLocalStorage(response.data.token);
-            this.cleanValuesState();
+            toastr.success(Constantes.MESSAGE.SUCCESS.USER.AUTHENTICATED);
             this.props.autenticar();
             if (this.props.isAutorization) {
                 this.props.history.push("/tarefa");
             }
         } catch (e) {
+            toastr.error(Constantes.MESSAGE.FAILED.USER.AUTHENTICATED);
             throw new Error(e);
+        } finally {
+            this.cleanValuesState();
         }
     }
 

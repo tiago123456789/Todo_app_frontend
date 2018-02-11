@@ -1,4 +1,4 @@
-import Constantes from "../Constantes";
+import Constantes from "../config/Constantes";
 
 export default class Service {
 

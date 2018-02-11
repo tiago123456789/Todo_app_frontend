@@ -1,7 +1,7 @@
-
-import TarefaService from "../../service/TarefaService";
+import { toastr } from "react-redux-toastr";
 import * as axios from "axios";
-import Constantes from "../../Constantes";
+import TarefaService from "../../service/TarefaService";
+import Constantes from "../../config/Constantes";
 
 const tarefaService = new TarefaService(axios);
 
@@ -9,11 +9,13 @@ const criarNova = (tarefa) => {
     return async (dispatch) => {
         try {
             await tarefaService.criar(tarefa);
+            toastr.success(Constantes.MESSAGE.SUCCESS.TASK.SAVE);
             dispatch([
                 cleanField(),
                 buscarTodas()
             ]);
         } catch(e) {
+            toastr.error(Constantes.FAILED.SUCCESS.TASK.SAVE);
             throw new Error(e);
         }
 
@@ -24,8 +26,10 @@ const deletar = (id) => {
     return async (dispatch) => {
         try {
             await tarefaService.deletar(id);
+            toastr.success(Constantes.MESSAGE.SUCCESS.TASK.DELETE);
             dispatch(buscarTodas())
         } catch (e) {
+            toastr.error(Constantes.MESSAGE.FAILED.TASK.DELETE);
             throw new Error(e);
         }
     }
@@ -40,9 +44,11 @@ const marcarTarefaConcluida = (tarefa) => {
     return async dispatch => {
         try {
             await tarefaService.atualizar(tarefa._id, tarefa);
+            toastr.success(Constantes.MESSAGE.SUCCESS.TASK.MAKE_DONE_TASK);
             dispatch(buscarTodas());
         } catch (error) {
-
+            toastr.error(Constantes.MESSAGE.FAILED.TASK.MAKE_DONE_TASK);
+            throw new Error(error);
         }
     }
 };
@@ -70,12 +76,23 @@ const atualizar = (tarefa) => {
   return async (dispatch, getState) => {
       try {
         await tarefaService.atualizar(getState().tarefa.id, {...tarefa, id: getState().tarefa.id });
-        dispatch([cleanField(), buscarTodas()]);
+          toastr.success(Constantes.MESSAGE.SUCCESS.TASK.EDIT);
+          dispatch([cleanField(), buscarTodas()]);
       } catch(e) {
+          toastr.error(Constantes.MESSAGE.FAILED.TASK.EDIT);
           throw new Error(e);
       }
   }
 };
 
 
-export { atualizar, editar, cleanField, buscarTodas, marcarTarefaConcluida, criarNova, deletar, alterarCampoDescricao };
+export {
+    atualizar,
+    editar,
+    cleanField,
+    buscarTodas,
+    marcarTarefaConcluida,
+    criarNova,
+    deletar,
+    alterarCampoDescricao
+};

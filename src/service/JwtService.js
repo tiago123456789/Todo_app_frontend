@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import Constantes from "../Constantes";
+import Constantes from "../config/Constantes";
 
 export default class JwtService {
 
@@ -9,10 +9,6 @@ export default class JwtService {
 
     getToken() {
         return localStorage.getItem(Constantes.LOCALSTORAGE.CHAVE.TOKEN);
-    }
-
-    getPayload() {
-        return this._decode();
     }
 
     getSpecifiedValue(key) {
