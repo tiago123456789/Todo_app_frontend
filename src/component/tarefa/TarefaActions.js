@@ -62,5 +62,20 @@ const cleanField = () => {
     return { type: Constantes.TYPE_ACTIONS.TASK.CLEAN_FIELD };
 };
 
+const editar = (tarefa) => {
+    return { type: Constantes.TYPE_ACTIONS.TASK.EDIT, payload: tarefa };
+};
 
-export { cleanField, buscarTodas, marcarTarefaConcluida, criarNova, deletar, alterarCampoDescricao };
+const atualizar = (tarefa) => {
+  return async (dispatch, getState) => {
+      try {
+        await tarefaService.atualizar(getState().tarefa.id, {...tarefa, id: getState().tarefa.id });
+        dispatch([cleanField(), buscarTodas()]);
+      } catch(e) {
+          throw new Error(e);
+      }
+  }
+};
+
+
+export { atualizar, editar, cleanField, buscarTodas, marcarTarefaConcluida, criarNova, deletar, alterarCampoDescricao };

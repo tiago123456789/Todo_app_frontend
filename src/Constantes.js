@@ -4,7 +4,8 @@ export default {
         TASK: {
             LIST: "TASK_LIST",
             CLEAN_FIELD: "CLEAN_FIELD",
-            ALTER_FIELD_DESCRIPTION: "ALTER_FIELT_DESCRIPTION"
+            ALTER_FIELD_DESCRIPTION: "ALTER_FIELT_DESCRIPTION",
+            EDIT: "EDIT"
         }
     },
     LOCALSTORAGE: {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Button from "./../template/Button";
-import { deletar, marcarTarefaConcluida } from "./TarefaActions";
+import { deletar, marcarTarefaConcluida, editar } from "./TarefaActions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
@@ -17,8 +17,8 @@ class Lista extends Component {
                                     action={() => this.props.marcarTarefaConcluida(tarefa)} />
                         }
 
-                        { tarefa.done &&
-                            <Button btnStyle="add" nome="Edit"  />
+                        { !tarefa.done &&
+                            <Button btnStyle="add" nome="Edit" action={() => this.props.editar(tarefa) } />
                         }
                         <Button btnStyle="danger" nome="Delete"
                                 action={() => this.props.deletar(tarefa._id) } />
@@ -38,5 +38,8 @@ class Lista extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ deletar: deletar, marcarTarefaConcluida: marcarTarefaConcluida }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    deletar: deletar,
+    editar: editar,
+    marcarTarefaConcluida: marcarTarefaConcluida }, dispatch);
 export default connect(null, mapDispatchToProps)(Lista);
